@@ -1,0 +1,84 @@
+<br [hidden]="isDataAvailable">
+<button [hidden]="!isDataAvailable" md-raised-button color="primary" class="mr-1" (click)="isDataAvailable = true">Get Report for Januray!</button>
+<br [hidden]="isDataAvailable">
+<h4>Community Sizes</h4>
+<div fxLayout="row"  fxLayoutWrap="wrap">
+  <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" fxFlex="100">
+    <md-card class="card-widget md-blue">
+      <div md-card-widget>
+        <div md-card-float-icon>
+          <md-icon>share</md-icon>
+        </div>
+        <div class="pl-0">
+          <h5 md-card-widget-title>{{facebookLikes}}</h5>
+          <p>Facebook</p>
+        </div>
+      </div>
+    </md-card>
+  </div>
+  <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" fxFlex="100">
+    <md-card class="card-widget md-grey">
+      <div md-card-widget>
+        <div md-card-float-icon>
+          <md-icon>share</md-icon>
+        </div>
+        <div class="pl-0">
+          <h5 md-card-widget-title>Comming Soon!</h5>
+          <p>Instagram</p>
+        </div>
+      </div>
+    </md-card>
+  </div>
+</div>
+
+<div *ngIf="isDataAvailable">
+  <div fxLayout="row"  fxLayoutWrap="wrap">
+    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+      <md-card>
+        <md-card-title>Likes and Comments</md-card-title>
+        <md-card-subtitle>These actions will help you reach more people.</md-card-subtitle>
+        <md-card-content>
+          <canvas #commentsLikes height="100" baseChart class="chart"
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [colors]="lineChartColors"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType"></canvas>
+        </md-card-content>
+      </md-card>
+    </div>
+  </div>
+
+
+  <div fxLayout="row" fxLayoutWrap="wrap">
+    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+      <md-card>
+        <md-card-title>Post Reach</md-card-title>
+        <md-card-subtitle>The number of people your posts were served to.</md-card-subtitle>
+        <md-card-content>
+          <canvas height="100" baseChart class="chart"
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartStackedOptions"
+            [colors]="lineChartColors"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"></canvas>
+        </md-card-content>
+      </md-card>
+    </div>
+  </div>
+  <br>
+  <h4>Demographics</h4>
+  <ngx-datatable
+    class="material fullscreen"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="0"
+    [rowHeight]="50"
+    [scrollbarV]="true"
+    [scrollbarH]="true"
+    [rows]="demographicsData"
+    [columns]="demographicsColumns">
+  </ngx-datatable>
+</div>
