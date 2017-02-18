@@ -10,7 +10,7 @@ export class GetPaidReachService {
   constructor(private http: Http) { }
 
   getPaidReachMonthly(pageId) {
-    return this.http.get('https://graph.facebook.com/v2.8/'+pageId+'/insights/page_posts_impressions_paid?since=2017-01-01&until=2017-01-31&period=day&access_token='+this.fbAccessToken)
+    return this.http.get('https://graph.facebook.com/v2.8/'+pageId+'/insights/page_posts_impressions_paid?since=2017-01-01&until=2017-02-01&limit=31&period=day&access_token='+this.fbAccessToken)
       .map((response: Response) => response.json())
   }
 

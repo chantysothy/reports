@@ -7,7 +7,7 @@
   @include md-elevation-transition;
   display: block;
   position: relative;
-  border-radius: $border-radius-base;
+  border: $border-radius-base;
   &.striped {
     .datatable-row-odd {
       background: md-color($background, 'hover');
@@ -17,6 +17,7 @@
   &.single-selection,
   &.multi-selection {
     .datatable-body-row {
+      border-bottom: 1px solid md-color($foreground, divider);
       &.active,
       &.active .datatable-row-group {
         @include _md-toolbar-color($primary);
@@ -39,6 +40,7 @@
 
   &:not(.cell-selection) {
     .datatable-body-row {
+      border-bottom: 1px solid md-color($foreground, divider);
       &:hover,
       &:hover .datatable-row-group {
         background: md-color($background, 'hover');
@@ -130,6 +132,7 @@
     }
 
     .datatable-body-row {
+      border-bottom: 1px solid md-color($foreground, divider);
       .datatable-body-cell {
         padding: .85rem 1.2rem;
         box-sizing: border-box;

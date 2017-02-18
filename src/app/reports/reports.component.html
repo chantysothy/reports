@@ -1,30 +1,29 @@
-<br [hidden]="isDataAvailable">
-<button [hidden]="!isDataAvailable" md-raised-button color="primary" class="mr-1" (click)="isDataAvailable = true">Get Report for Januray!</button>
-<br [hidden]="isDataAvailable">
-<h4>Community Sizes</h4>
 <div fxLayout="row"  fxLayoutWrap="wrap">
-  <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" fxFlex="100">
+  <div fxFlex.gt-sm="20" fxFlex.gt-xs="20" fxFlex="100">
+    <img class="brand-logo" src="{{ logo }}" alt="brand-logo">
+  </div>
+  <div fxFlex.gt-sm="40" fxFlex.gt-xs="40" fxFlex="100">
     <md-card class="card-widget md-blue">
       <div md-card-widget>
         <div md-card-float-icon>
-          <md-icon>share</md-icon>
+          <i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i>
         </div>
         <div class="pl-0">
-          <h5 md-card-widget-title>{{facebookLikes}}</h5>
-          <p>Facebook</p>
+          <h5 md-card-widget-title md-card-widget-content>{{facebookLikes}}</h5>
+          <p md-card-widget-content>Facebook</p>
         </div>
       </div>
     </md-card>
   </div>
-  <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" fxFlex="100">
+  <div fxFlex.gt-sm="40" fxFlex.gt-xs="40" fxFlex="100">
     <md-card class="card-widget md-grey">
       <div md-card-widget>
         <div md-card-float-icon>
-          <md-icon>share</md-icon>
+          <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
         </div>
         <div class="pl-0">
-          <h5 md-card-widget-title>Comming Soon!</h5>
-          <p>Instagram</p>
+          <h5 md-card-widget-title md-card-widget-content>Comming Soon!</h5>
+          <p md-card-widget-content>Instagram</p>
         </div>
       </div>
     </md-card>
@@ -69,16 +68,68 @@
     </div>
   </div>
   <br>
-  <h4>Demographics</h4>
-  <ngx-datatable
-    class="material fullscreen"
-    [columnMode]="'force'"
-    [headerHeight]="50"
-    [footerHeight]="0"
-    [rowHeight]="50"
-    [scrollbarV]="true"
-    [scrollbarH]="true"
-    [rows]="demographicsData"
-    [columns]="demographicsColumns">
-  </ngx-datatable>
+  <div fxLayout="row" fxLayoutWrap="wrap">
+    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+      <h4>Demographics - Gender</h4>
+      <ngx-datatable
+        class="material fullscreen"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="0"
+        [rowHeight]="50"
+        [scrollbarV]="true"
+        [scrollbarH]="true"
+        [rows]="demographicsData"
+        [columns]="demographicsColumns">
+      </ngx-datatable>
+    </div>
+  </div>
+  <div>
+    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+      <h4>Demographics - Location</h4>
+      <ngx-datatable
+      class="material fullscreen"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="50"
+      [columns]="locationColumns"
+      [rows]="locationRows">
+      </ngx-datatable>
+    </div>
+  </div>
+  <h4>Top Posts</h4>
+  <div fxLayout="row" fxLayoutWrap="wrap">
+    <div *ngFor="let post of topPostsData" fxFlex.gt-sm="33.33" fxFlex.gt-xs="33.33" fxFlex="100">
+      <md-card>
+        <md-card-header>
+          <md-card-title>Likes: {{ post.likes }}</md-card-title>
+          <md-card-subtitle>{{ post.data.data[0].type | uppercase }}</md-card-subtitle>
+        </md-card-header>
+        <img md-card-image src="{{ post.data.data[0].media.image.src }}">
+        <md-card-content>
+          <p>{{ post.data.data[0].description }}</p>
+        </md-card-content>
+      </md-card>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutWrap="wrap">
+    <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" fxFlex="100">
+      <h4>Competition</h4>
+      <md-card  *ngFor="let competitor of competitors" class="card-widget md-grey-100">
+        <div md-card-widget>
+          <div md-card-float-icon>
+            <img src="{{ competitor.picture.data.url }}">
+          </div>
+          <div class="pl-0">
+            <h5 md-card-widget-title md-card-widget-content>{{ competitor.fan_count }}</h5>
+            <p md-card-widget-content>{{ competitor.name }} - Location: {{ competitor.location.city }}, {{ competitor.location.country }}</p>
+          </div>
+        </div>
+      </md-card>
+    </div>
+  </div>
 </div>
+<!--<div *ngFor="let competitor of competitors">-->
+<!--<img src="{{ competitor.picture.data.url }}"><p>{{ competitor.name }} | Community Size: {{ competitor.fan_count }}</p>-->
+

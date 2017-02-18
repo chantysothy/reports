@@ -10,9 +10,9 @@ export class GetRcsService {
   constructor(private http: Http) { }
 
   getRcsByMonthy(pageId) {
-    return this.http.get('https://graph.facebook.com/v2.8/'+pageId+'/insights/page_positive_feedback_by_type?period=day&since=2017-01-01&limit=31&until=2017-01-31&access_token='+this.fbAccessToken)
+    return this.http.get('https://graph.facebook.com/v2.8/'+pageId+'/insights/page_positive_feedback_by_type?period=day&since=2017-01-01&limit=31&until=2017-02-01&access_token='+this.fbAccessToken)
       .map((response: Response) => response.json())
   }
-  
+
 
 }

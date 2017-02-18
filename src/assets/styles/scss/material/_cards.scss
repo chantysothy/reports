@@ -67,7 +67,7 @@ body {
     }
     [md-card-float-icon] {
       position: absolute;
-      right: 15px;
+      left: 30px;
       top: 50%;
       margin-top: -20px;
       width: 40px;
@@ -77,6 +77,10 @@ body {
         opacity: .2;
         transform: rotate(-5deg);
       }
+    }
+    [md-card-widget-content] {
+      position: relative;
+      right: -75px;
     }
     [md-card-widget] {
       height: auto;
