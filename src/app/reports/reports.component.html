@@ -10,7 +10,7 @@
         </div>
         <div class="pl-0">
           <h5 md-card-widget-title md-card-widget-content>{{facebookLikes}}</h5>
-          <p md-card-widget-content>Facebook</p>
+          <p md-card-widget-content>Facebook - {{facebookLikes-facebookLikesLM}} increase from last month.</p>
         </div>
       </div>
     </md-card>
@@ -35,7 +35,7 @@
     <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
       <md-card>
         <md-card-title>Likes and Comments</md-card-title>
-        <md-card-subtitle>These actions will help you reach more people.</md-card-subtitle>
+        <md-card-subtitle>Total Likes: <b>{{likesSum}}</b> | Total Comments: <b>{{commentsSum}}</b></md-card-subtitle>
         <md-card-content>
           <canvas #commentsLikes height="100" baseChart class="chart"
             [datasets]="lineChartData"
@@ -54,7 +54,7 @@
     <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
       <md-card>
         <md-card-title>Post Reach</md-card-title>
-        <md-card-subtitle>The number of people your posts were served to.</md-card-subtitle>
+        <md-card-subtitle>Total Organic Reach: <b>{{organicReachSum}}</b> | Total Paid Reach: <b>{{paidReachSum}}</b></md-card-subtitle>
         <md-card-content>
           <canvas height="100" baseChart class="chart"
             [datasets]="barChartData"

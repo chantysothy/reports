@@ -11,7 +11,7 @@ export class FacebookService {
 
   getPageFollowersLM(pageId) {
     return new Promise((resolve) => {
-      this.http.get(this.api+pageId+'/insights/page_fans?since=2017-01-01&until=2017-01-01&access_token='+this.api)
+      this.http.get(this.api+pageId+'/insights/page_fans?since=2017-01-01&until=2017-01-01&access_token='+this.apiKey)
         .map((response: Response) => response.json())
         .subscribe((data: any) => resolve(data));
     });

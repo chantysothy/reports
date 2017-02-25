@@ -31,10 +31,15 @@ export class ReportsComponent implements OnInit, OnDestroy {
   demographicsData: any;
   id: string;
   facebookLikes: any;
+  facebookLikesLM: any;
   isDataAvailable:boolean = false;
   topPostsData: any;
   competitors: any[] = [];
   logo: any;
+  organicReachSum: any;
+  paidReachSum: any;
+  likesSum: any;
+  commentsSum: any;
 
   demographicsColumns = [
     {prop: 'age_group', name: 'Age Group'},
@@ -178,9 +183,7 @@ export class ReportsComponent implements OnInit, OnDestroy {
         (data: any) => this.facebookLikes = data.data[0].values[0].value
       );
 
-    this.facebook.getPageFollowersLM(this.id).then((data: any) => {
-      console.log(data);
-    });
+    this.facebook.getPageFollowersLM(this.id).then((data: any) => this.facebookLikesLM = data.data[0].values[0].value);
 
     this.rcs.getRcsByMonthy(this.id)
       .subscribe(
@@ -192,7 +195,9 @@ export class ReportsComponent implements OnInit, OnDestroy {
             commentsArray.push(data.data[0].values[key].value.comment);
           }
           this.lineChartData[0].data = likesArray;
+          this.likesSum = likesArray.reduce((a, b) => a + b, 0);
           this.lineChartData[1].data = commentsArray;
+          this.commentsSum = commentsArray.reduce((a, b) => a + b, 0);
         }
       );
 
@@ -204,6 +209,7 @@ export class ReportsComponent implements OnInit, OnDestroy {
             paidReachArray.push(data.data[0].values[key].value);
           }
           this.barChartData[1].data = paidReachArray;
+          this.paidReachSum = paidReachArray.reduce((a, b) => a + b, 0);
         }
       );
 
@@ -215,6 +221,7 @@ export class ReportsComponent implements OnInit, OnDestroy {
             organicReachArray.push(data.data[0].values[key].value);
           }
           this.barChartData[0].data = organicReachArray;
+          this.organicReachSum = organicReachArray.reduce((a, b) => a + b, 0);
         }
       );
 
@@ -263,7 +270,7 @@ export class ReportsComponent implements OnInit, OnDestroy {
               topThree[2].post = likes[i][0];
             }
           }
-          this.postData.getPostData(topThree).then((posts: any) => { this.topPostsData = posts; console.log(this.topPostsData); });
+          this.postData.getPostData(topThree).then((posts: any) => this.topPostsData = posts);
           this.isDataAvailable = true;
         }, 2000);
       });
