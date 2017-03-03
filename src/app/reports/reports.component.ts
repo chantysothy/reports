@@ -178,14 +178,14 @@ export class ReportsComponent implements OnInit, OnDestroy {
     );
 
     // Get Number of Followers.
-    this.followers.getFbFollowersToday(this.id)
+    this.facebook.getFbFollowersToday(this.id)
       .subscribe(
         (data: any) => this.facebookLikes = data.data[0].values[0].value
       );
 
     this.facebook.getPageFollowersLM(this.id).then((data: any) => this.facebookLikesLM = data.data[0].values[0].value);
 
-    this.rcs.getRcsByMonthy(this.id)
+    this.facebook.getRcsByMonthy(this.id)
       .subscribe(
         (data: any) => {
           let likesArray = [];
@@ -201,7 +201,7 @@ export class ReportsComponent implements OnInit, OnDestroy {
         }
       );
 
-    this.paidReach.getPaidReachMonthly(this.id)
+    this.facebook.getPaidReachMonthly(this.id)
       .subscribe(
         (data: any) => {
           let paidReachArray = [];
@@ -213,7 +213,7 @@ export class ReportsComponent implements OnInit, OnDestroy {
         }
       );
 
-    this.organicReach.getOrganicReachMonthly(this.id)
+    this.facebook.getOrganicReachMonthly(this.id)
       .subscribe(
         (data: any) => {
           let organicReachArray = [];
@@ -225,7 +225,7 @@ export class ReportsComponent implements OnInit, OnDestroy {
         }
       );
 
-    this.demographics.GetDemographicsServiceMonth(this.id)
+    this.facebook.GetDemographicsServiceMonth(this.id)
       .subscribe(
         (data: any) => {
           let demographics = data.data[0].values[0].value;
@@ -270,7 +270,7 @@ export class ReportsComponent implements OnInit, OnDestroy {
               topThree[2].post = likes[i][0];
             }
           }
-          this.postData.getPostData(topThree).then((posts: any) => this.topPostsData = posts);
+          this.facebook.getPostData(topThree).then((posts: any) => this.topPostsData = posts);
           this.isDataAvailable = true;
         }, 2000);
       });
